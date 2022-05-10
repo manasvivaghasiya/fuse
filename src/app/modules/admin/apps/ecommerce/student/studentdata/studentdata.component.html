@@ -1,0 +1,321 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+    <!-- header -->
+    <!-- header -->
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+        <!-- Loader -->
+        <!-- <div
+            class="absolute inset-x-0 bottom-0"
+            *ngIf="isLoading">
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+        </div> -->
+    <!-- title -->
+    <mat-accordion class="example-headers-align">
+        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                <div class="text-4xl font-extrabold tracking-tight">Product</div>
+            </mat-panel-title>
+            <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+                <!-- add button -->
+                <button
+                class="ml-4"
+                mat-flat-button
+                [color]="'primary'"
+                (click)="createProduct()">
+    
+                <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                <span class="ml-2 mr-1">Add</span>
+                </button>
+            </div>
+          </mat-expansion-panel-header>
+          <form class="flex flex-col w-full" [formGroup]="selectedProductForm" >
+          <div class="d-flex  flex-col w-full lg:w-3/4 sm:pl-8  ">
+            <!-- category -->
+          <!-- <mat-form-field  class="w-full">
+              <mat-label>Category</mat-label>
+              <mat-radio-group  [formControlName]="'productName'" class="margin-left">
+                  <mat-radio-button value="Boys"> Boys </mat-radio-button>
+                  <mat-radio-button value="Girls"> Girls </mat-radio-button>
+                </mat-radio-group>
+          </mat-form-field> -->
+          <mat-form-field appearance="outline" class="m-2 ">
+              <mat-label>category</mat-label>
+              <input matInput  [formControlName]="'category'"  placeholder="category">
+          </mat-form-field>
+           <!-- product name -->
+          <mat-form-field appearance="outline" class="m-2">
+              <mat-label>product name</mat-label>
+              <input matInput  [formControlName]="'productName'"  placeholder="name">
+          </mat-form-field>
+          <!-- decription -->
+          <mat-form-field appearance="outline" class="m-2  w-full">
+              <mat-label>description</mat-label>
+              <textarea   [formControlName]="'description'" matInput ></textarea>
+          </mat-form-field>
+          <!-- price -->
+          <mat-form-field appearance="outline" class="m-2">
+              <mat-label>price</mat-label>
+              <input   [formControlName]="'price'" matInput type="number" placeholder="name"  >
+          </mat-form-field>
+          <!-- clothsize -->
+          <mat-form-field appearance="outline" class="m-2">
+              <mat-label>clothSize</mat-label>
+              <mat-select   [formControlName]="'clothSize'" matInput placeholder="clothSize">
+                  <mat-option value="X">X</mat-option>
+                  <mat-option value="L" >L</mat-option>
+                  <mat-option value="XL">XL</mat-option>
+                  <mat-option value="XXL">XXL</mat-option>
+              </mat-select>
+          </mat-form-field>
+          <!-- instock -->
+
+          <mat-form-field appearance="outline" class="m-2">
+              <mat-label>inStock</mat-label>
+              <input  [formControlName]="'inStock'" matInput placeholder="">
+          </mat-form-field>
+      </div>
+</form>
+
+          <mat-action-row>
+            <button mat-button color="primary" (click)="cancle()">Cancle</button>
+            <button mat-button color="primary" (click)="nextStep()">Add</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+        </mat-accordion>
+        <!-- -------------------- -->
+        <!-- <div class="text-4xl font-extrabold tracking-tight">Product</div> -->
+           <!-- Actions -->
+           <!-- <div class="flex flex-shrink-0 items-center mt-6 sm:mt-0 sm:ml-4"> -->
+            <!-- add button -->
+            <!-- <button
+            class="ml-4"
+            mat-flat-button
+            [color]="'primary'"
+            (click)="createProduct()">
+
+            <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+            <span class="ml-2 mr-1">Add</span>
+            </button>
+        </div> -->
+    </div>
+
+     <!-- Main -->
+     <div class="flex flex-auto overflow-hidden">
+          <!-- Products list -->
+        <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
+            <!-- <ng-container *ngIf="(products$ | async) as products"> -->
+                <!-- <ng-container *ngIf="products.length > 0; else noProducts"> -->
+            <div class="grid">
+                  <!-- Header -->
+                <div
+                  class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                  matSort
+                  matSortDisableClear>
+                <!-- <div></div> -->
+                
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'category'">
+                        Category
+                    </div>
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'productName'">
+                        ProductName
+                    </div>
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'description'">
+                        Description
+                    </div>
+                    
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'price'">
+                         price
+                    </div>
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'clothSize'">
+                        ClothSize
+                    </div>
+                    <div
+                        class="hidden md:block"
+                        [mat-sort-header]="'inStock'">
+                        inStock
+                    </div>
+                    
+                    <div
+                        class="hidden md:block">
+                        Details
+                    </div>
+                  
+                </div>
+                <!-- rows -->
+                <ng-container *ngIf="(products) as products">
+                    <ng-container *ngFor="let product of products; trackBy: trackByFn">
+                    <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                    
+                         <!-- Details button -->
+                         <!-- <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title> -->
+                        
+                        <!-- </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        </mat-expansion-panel> -->
+                        <!-- <div>
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                  <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                      This is the expansion title
+                                    </mat-panel-title>
+                                    <mat-panel-description>
+                                      This is a summary of the content
+                                    </mat-panel-description>
+                                  </mat-expansion-panel-header>
+                                  <p>This is the primary content of the panel.</p>
+                                </mat-expansion-panel>
+                              </mat-accordion>
+                        </div>
+                        -->
+                        <div class="hidden md:block truncate">
+                            {{product.category}}
+                        </div>
+                      
+                        <div class="hidden md:block truncate">
+                            {{product.productName}}
+                        </div>
+                        <div class="hidden md:block truncate">
+                            {{product.description}}
+                        </div>
+                        <div class="hidden md:block truncate">
+                            {{product.price}}
+                        </div>
+                        <div class="hidden md:block truncate">
+                            {{product.clothSize}}
+                        </div>
+                        <div class="hidden md:block truncate">
+                            {{product.inStock}}
+                        </div>
+                        <!-- detail button -->
+                        <div>
+                            <button
+                                class="min-w-10 min-h-7 h-7 px-2 leading-6"
+                                mat-stroked-button
+                                (click)="toggleDetails(product?._id)">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    [svgIcon]="selectedProduct?._id === product?._id ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid">
+                        <ng-container *ngIf="selectedProduct?._id === product._id">
+                            <ng-container *ngTemplateOutlet="rowDetailsTemplate; context: {$implicit: product}"></ng-container>
+                        </ng-container>
+                    </div>
+                
+                    </ng-container>
+                </ng-container>
+            </div>
+                <!-- </ng-container> -->
+            <!-- </ng-container> -->
+               <!-- -----------form------------- -->
+           <ng-template #rowDetailsTemplate let-product>
+            <div class="shadow-lg overflow-hidden">
+                <div class="flex border-b">
+                    <!-- ---selected-form--- -->
+                    <form class="flex flex-col w-full" [formGroup]="selectedProductForm" >
+                        <div class="flex flex-auto flex-wrap">
+                     
+                            <div class="d-flex  flex-col w-full lg:w-3/4 sm:pl-8">
+                                  <!-- category -->
+                                <!-- <mat-form-field  class="w-full">
+                                    <mat-label>Category</mat-label>
+                                    <mat-radio-group  [formControlName]="'productName'" class="margin-left">
+                                        <mat-radio-button value="Boys"> Boys </mat-radio-button>
+                                        <mat-radio-button value="Girls"> Girls </mat-radio-button>
+                                      </mat-radio-group>
+                                </mat-form-field> -->
+                                <mat-form-field appearance="outline" class="m-2">
+                                    <mat-label>category</mat-label>
+                                    <input matInput  [formControlName]="'category'"  placeholder="category">
+                                </mat-form-field>
+                                 <!-- product name -->
+                                <mat-form-field appearance="outline" class="m-2">
+                                    <mat-label>product name</mat-label>
+                                    <input matInput  [formControlName]="'productName'"  placeholder="name">
+                                </mat-form-field>
+                                <!-- decription -->
+                                <mat-form-field appearance="outline" class="m-2 w-full">
+                                    <mat-label>description</mat-label>
+                                    <textarea   [formControlName]="'description'" matInput ></textarea>
+                                </mat-form-field>
+                                <!-- price -->
+                                <mat-form-field appearance="outline" class="m-2">
+                                    <mat-label>price</mat-label>
+                                    <input   [formControlName]="'price'" matInput type="number" placeholder="name"  >
+                                </mat-form-field>
+                                <!-- clothsize -->
+                                <mat-form-field appearance="outline" class="m-2">
+                                    <mat-label>clothSize</mat-label>
+                                    <mat-select   [formControlName]="'clothSize'" matInput placeholder="clothSize">
+                                        <mat-option value="XL"  >XL</mat-option>
+                                        <mat-option value="L"  >L</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                                <!-- instock -->
+
+                                <mat-form-field appearance="outline" class="m-2">
+                                    <mat-label>inStock</mat-label>
+                                    <input  [formControlName]="'inStock'" matInput placeholder="">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between w-full border-t px-8 py-4">
+                            <button
+                                class="-ml-4"
+                                mat-button
+                                [color]="'warn'"
+                                (click)="deleteSelectedProduct(product._id)">
+                                Delete
+                            </button>
+                            <div class="flex items-center">
+                                <div
+                                    class="flex items-center mr-4"
+                                    *ngIf="flashMessage">
+                                    <ng-container *ngIf="flashMessage === 'success'">
+                                        <mat-icon
+                                            class="text-green-500"
+                                            [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                                        <span class="ml-2">Product updated</span>
+                                    </ng-container>
+                                    <ng-container *ngIf="flashMessage === 'error'">
+                                        <mat-icon
+                                            class="text-red-500"
+                                            [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                                        <span class="ml-2">An error occurred, try again!</span>
+                                    </ng-container>
+                                </div>
+                                <button
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    (click)="updateSelectedProduct(product._id)">
+                                    Update
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+           </ng-template>
+        </div>
+    </div>
+</div>
+
+
+  

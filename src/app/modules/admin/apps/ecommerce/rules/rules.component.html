@@ -1,0 +1,31 @@
+<!-- ----button----- -->
+<button mat-raised-button color="primary" (click)="add()">Primary</button>
+<!-- ------table----- -->
+<div>
+<table>
+    <tr>
+        <th>select</th>
+        <th>No</th>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr *ngFor="let element of myformArray.controls;let i=index">
+        <td><mat-checkbox  (click)="check()"></mat-checkbox></td>
+        <td *ngFor="let col of displayedFields"> 
+            <input arrow-div [formControl]="element.get(col)" >
+        </td>
+       <td>
+        </td>
+       
+
+    </tr>
+    
+</table>
+<div>
+    <button mat-raised-button color="primary" *ngIf="data" (click)="edit()">Edit</button>
+        
+          <span> <button mat-raised-button color="danger" *ngIf="data" (click)="delete(i)">Delete</button>  </span>
+    <span> <button mat-raised-button color="success" *ngIf="data" (click)="cancle()">Cancle</button> </span> <!-- <button mat-raised-button color="danger" *ngIf="data" (click)="delete(i)">Delete</button> -->
+</div>
+</div>
+
