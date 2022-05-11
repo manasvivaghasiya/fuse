@@ -23,6 +23,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RulesComponent } from './rules/rules.component';
+import { MatTableModule } from '@angular/material/table';
 // import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 // import { AddcartComponent } from './scrumboard/addcart/addcart.component';
 
@@ -55,8 +56,9 @@ import { RulesComponent } from './rules/rules.component';
         MatRadioModule, 
         SharedModule,
         FormsModule,
+        MatTableModule,
         ReactiveFormsModule,
-        MatExpansionModule
+        MatExpansionModule,
     ]
 })
 export class ECommerceModule

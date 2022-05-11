@@ -2,30 +2,41 @@
 <button mat-raised-button color="primary" (click)="add()">Primary</button>
 <!-- ------table----- -->
 <div>
-<table>
+<table   >
     <tr>
         <th>select</th>
         <th>No</th>
         <th>Name</th>
         <th>Description</th>
-    </tr>
-    <tr *ngFor="let element of myformArray.controls;let i=index">
-        <td><mat-checkbox  (click)="check()"></mat-checkbox></td>
-        <td *ngFor="let col of displayedFields"> 
-            <input arrow-div [formControl]="element.get(col)" >
-        </td>
-       <td>
-        </td>
-       
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Cancle</th>
 
     </tr>
+    <tr *ngFor="let element of myformArray.controls;let i=index">
+        <td><mat-checkbox (change)="checkboxflag($event)" (click)="check()"></mat-checkbox></td>
+        <td *ngFor="let col of displayedFields"> 
+            <input type="text"  arrow-div [formControl]="element.get(col)" >
+        </td>
+        <td>
+            <button  *ngIf="data" (click)="delete(i)">Delete</button>
+        </td>
+        <td>
+            <button *ngIf="data" (click)="edit()">Edit</button>
+        </td>
+        <td>
+            <button  *ngIf="data" (click)="cancle()">Cancle</button>
+        </td>
+       <td>
+    </td>
+</tr>
     
 </table>
 <div>
-    <button mat-raised-button color="primary" *ngIf="data" (click)="edit()">Edit</button>
         
-          <span> <button mat-raised-button color="danger" *ngIf="data" (click)="delete(i)">Delete</button>  </span>
-    <span> <button mat-raised-button color="success" *ngIf="data" (click)="cancle()">Cancle</button> </span> <!-- <button mat-raised-button color="danger" *ngIf="data" (click)="delete(i)">Delete</button> -->
+          <span>   </span>
+    <span>  </span> <!-- <button mat-raised-button color="danger" *ngIf="data" (click)="delete(i)">Delete</button> -->
 </div>
 </div>
-
+<!-- ------------------------2----------------- -->
+    
