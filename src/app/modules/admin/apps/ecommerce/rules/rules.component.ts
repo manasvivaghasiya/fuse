@@ -100,10 +100,7 @@ export class RulesComponent implements OnInit {
     debugger
     this.data = false;
     element.Checked = false;
-
   }
-
-
 }
 
 export interface eldisplayedFieldsement {
