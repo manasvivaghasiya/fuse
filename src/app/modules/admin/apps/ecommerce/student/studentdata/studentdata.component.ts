@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, DebugEventListener, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 // import { MatSort } from '@angular/material/sort';
@@ -12,7 +12,7 @@ import { fuseAnimations } from '@fuse/animations';
 @Component({
   selector: 'app-studentdata',
   templateUrl: './studentdata.component.html',
- styles         : [
+  styles: [
     /* language=SCSS */
     `
         .inventory-grid {
@@ -31,47 +31,47 @@ import { fuseAnimations } from '@fuse/animations';
             }
         }
     `
-],
-animations     : fuseAnimations
+  ],
+  animations: fuseAnimations
 })
 export class StudentdataComponent implements OnInit {
-  product :boolean = true;
+  product: boolean = true;
   products$: Observable<studentProduct[]>;
   // products:any;
   selectedProductForm: FormGroup;
   // selectedProduct: InventoryProduct | null = null;
   products: any;
-  selectedProduct:any;
+  selectedProduct: any;
   // _changeDetectorRef: any;
   editInfo: any;
   step = 0;
 
- 
 
-  constructor( private httpclient : HttpClient, 
-     private _formBuilder: FormBuilder,
-     private _studentService:StudentService,
-     private _changeDetectorRef : ChangeDetectorRef) { }
+
+  constructor(private httpclient: HttpClient,
+    private _formBuilder: FormBuilder,
+    private _studentService: StudentService,
+    private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
-  this.selectedProductForm = this._formBuilder.group({
-    category: [''],
-    productName: [''],
-    description: [''],
-    price: [''],
-    clothSize: [''],
-    inStock: [''],
-    _id:['']
-  }) as any;
+    this.selectedProductForm = this._formBuilder.group({
+      category: [''],
+      productName: [''],
+      description: [''],
+      price: [''],
+      clothSize: [''],
+      inStock: [''],
+      _id: ['']
+    }) as any;
 
     this.getProduct();
   }
 
-  submit(){
+  submit() {
 
   }
-  addProduct(){
+  addProduct() {
 
   }
 
@@ -79,177 +79,172 @@ export class StudentdataComponent implements OnInit {
     this.step = index;
     this.selectedProductForm.reset()
   }
-  cancle(){
+  cancle() {
     this.step++;
     this.selectedProductForm.reset()
   }
   nextStep() {
     debugger
     this.step++;
- this.httpclient.post(`${environment.apiProduct}/product/add`,this.selectedProductForm.value)
-    .subscribe((res:any)=>{
-      if (res.isSuccess) {
-        alert('Data added successfully')
-        this.getProduct()
-        this.selectedProductForm.reset()
-  
-      } else {
-        alert(res.message)
-      }
-    });
-  this.closeDetails();
- 
+    this.httpclient.post(`${environment.apiProduct}/product/add`, this.selectedProductForm.value)
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          alert('Data added successfully')
+          this.getProduct()
+          this.selectedProductForm.reset()
+
+        } else {
+          alert(res.message)
+        }
+      });
+    this.closeDetails();
+
 
   }
 
   prevStep() {
     this.step--;
   }
-//  -----get-----
-  getProduct(){
+  //  -----get-----
+  getProduct() {
     this.httpclient.get(`${environment.apiProduct}/product/get`)
-    .subscribe((res:any)=>{
-      this.products = res.data
-      console.log(res.data)
-    });
+      .subscribe((res: any) => {
+        this.products = res.data
+        console.log(res.data)
+      });
   }
 
-//   getByProductId(id: string | undefined) {
+  //   getByProductId(id: string | undefined) {
 
-//     this.httpclient.get(`${environment.apiProduct}/product/get-product-by-id?id=${id}`).subscribe((res: any) => {
-//       this.products.category = res.category;
-//       this.products.productName = res.productName;
-//       this.products.description = res.description;
-//       this.products.price = res.price;
-//       this.products.clothSize = res.clothSize;
-//       this.products.inStock = res.inStock;
-//       this.products._id = res._id;
-//       console.log(res);
-//     })
-// }
+  //     this.httpclient.get(`${environment.apiProduct}/product/get-product-by-id?id=${id}`).subscribe((res: any) => {
+  //       this.products.category = res.category;
+  //       this.products.productName = res.productName;
+  //       this.products.description = res.description;
+  //       this.products.price = res.price;
+  //       this.products.clothSize = res.clothSize;
+  //       this.products.inStock = res.inStock;
+  //       this.products._id = res._id;
+  //       console.log(res);
+  //     })
+  // }
 
 
-// ------form-open---
-// createProduct(product:any){
-  
-// debugger
-//   // this.httpclient.post(`${environment.apiProduct}/product/add`,this.selectedProduct)
-//   // .subscribe((product)=>{
-//     if(this.selectedProduct && this.selectedProduct._id === product) 
-//     {
-//       this.closeDetails();
-//       return;  
-//     }
-//   //   this.selectedProduct = product;
-//   // this.selectedProductForm.patchValue(product);
+  // ------form-open---
+  // createProduct(product:any){
 
-//   // // Mark for check
-//   // this._changeDetectorRef.markForCheck();
-//   // });
-//   // {
-//   //   this.closeDetails();
-//   //   return;
-//   // } 
-// }
+  // debugger
+  //   // this.httpclient.post(`${environment.apiProduct}/product/add`,this.selectedProduct)
+  //   // .subscribe((product)=>{
+  //     if(this.selectedProduct && this.selectedProduct._id === product) 
+  //     {
+  //       this.closeDetails();
+  //       return;  
+  //     }
+  //   //   this.selectedProduct = product;
+  //   // this.selectedProductForm.patchValue(product);
 
-createProduct(): void
-{
-debugger
+  //   // // Mark for check
+  //   // this._changeDetectorRef.markForCheck();
+  //   // });
+  //   // {
+  //   //   this.closeDetails();
+  //   //   return;
+  //   // } 
+  // }
 
-  this.product = true;
-  // if(this.selectedProduct && this.selectedProduct._id) 
-         
-  // {
-  //   this.closeDetails();
-  //   return;  
-  // } 
-  
-  //   // Create the product
-  //   this._studentService.createProduct().subscribe((newProduct) => {
+  createProduct(): void {
+    debugger
 
-  //       // Go to new product
-  //       this.selectedProduct = newProduct;
+    this.product = true;
+    // if(this.selectedProduct && this.selectedProduct._id) 
 
-  //       // Fill the form
-  //       this.selectedProductForm.patchValue(newProduct);
+    // {
+    //   this.closeDetails();
+    //   return;  
+    // } 
 
-  //       // Mark for check
-  //       this._changeDetectorRef.detectChanges();
-  //   });
-}
+    //   // Create the product
+    //   this._studentService.createProduct().subscribe((newProduct) => {
+
+    //       // Go to new product
+    //       this.selectedProduct = newProduct;
+
+    //       // Fill the form
+    //       this.selectedProductForm.patchValue(newProduct);
+
+    //       // Mark for check
+    //       this._changeDetectorRef.detectChanges();
+    //   });
+  }
 
 
   // -----add-update-data----
-updateSelectedProduct(_id:string){
-  debugger
-  if (this.selectedProductForm.value){
-     this.updateProduct(_id);
-  }
-  else{
-    this.httpclient.post(`${environment.apiProduct}/product/add`,this.selectedProductForm.value)
-    .subscribe((res:any)=>{
-      if (res.isSuccess) {
-        alert('Data added successfully')
-        this.getProduct()
-        this.selectedProductForm.reset()
-  
-      } else {
-        alert(res.message)
-      }
-    });
-  }
-  this.closeDetails();
-}
+  updateSelectedProduct(_id: string) {
+    debugger
+    if (this.selectedProductForm.value) {
+      this.updateProduct(_id);
+    }
+    else {
+      this.httpclient.post(`${environment.apiProduct}/product/add`, this.selectedProductForm.value)
+        .subscribe((res: any) => {
+          if (res.isSuccess) {
+            alert('Data added successfully')
+            this.getProduct()
+            this.selectedProductForm.reset()
 
-// ---close-toggle---
-closeDetails(): void
-{
+          } else {
+            alert(res.message)
+          }
+        });
+    }
+    this.closeDetails();
+  }
+
+  // ---close-toggle---
+  closeDetails(): void {
     this.selectedProduct = '';
-}
+  }
 
-// ----open-toggle----
-  toggleDetails(_id:string) :void
-  {
-   debugger
+  // ----open-toggle----
+  toggleDetails(_id: string): void {
+    debugger
     // if(this.selectedProduct && this.selectedProductForm['id'] === id) 
-    if(this.selectedProduct && this.selectedProduct._id === _id) 
-         
-    {
+    if (this.selectedProduct && this.selectedProduct._id === _id) {
       this.closeDetails();
-      return;  
-    } 
+      return;
+    }
     this._changeDetectorRef.detectChanges();
-       
-    this.httpclient.get(`${environment.apiProduct}/product/get-product-by-id?id=${_id}`,this.selectedProduct).subscribe((res: any) => {
-     if(res.isSuccess){
-      this.selectedProduct = res.data;
-      this.selectedProductForm.patchValue(res.data);
 
-      // Mark for check
-      this._changeDetectorRef.detectChanges();
-     }
+    this.httpclient.get(`${environment.apiProduct}/product/get-product-by-id?id=${_id}`, this.selectedProduct).subscribe((res: any) => {
+      if (res.isSuccess) {
+        this.selectedProduct = res.data;
+        this.selectedProductForm.patchValue(res.data);
+
+        // Mark for check
+        this._changeDetectorRef.detectChanges();
+      }
       else {
         console.log('error')
       }
     });
   }
 
-// ----update----
-  updateProduct(_id:string) {
+  // ----update----
+  updateProduct(_id: string) {
     debugger
     const data = {
-      "category" : this.selectedProductForm.value.category,
-      "productName" : this.selectedProductForm.value.productName,
-      "description" : this.selectedProductForm.value.description,
-      "price" : this.selectedProductForm.value.price,
-      "clothSize" : this.selectedProductForm.value.clothSize,
-      "inStock" : this.selectedProductForm.value.inStock,
-      "id" :_id,
+      "category": this.selectedProductForm.value.category,
+      "productName": this.selectedProductForm.value.productName,
+      "description": this.selectedProductForm.value.description,
+      "price": this.selectedProductForm.value.price,
+      "clothSize": this.selectedProductForm.value.clothSize,
+      "inStock": this.selectedProductForm.value.inStock,
+      "id": _id,
     }
-    this.httpclient.post(`${environment.apiProduct}/product/update`,data).subscribe((res: any) => {
+    this.httpclient.post(`${environment.apiProduct}/product/update`, data).subscribe((res: any) => {
       if (res.isSuccess) {
         // this.editInfo = null
-        debugger  
+        debugger
         alert('Data updated successfully')
 
         this.selectedProductForm.reset()
@@ -258,26 +253,26 @@ closeDetails(): void
         alert(res.message)
       }
     });
-    this.closeDetails();  
-}
+    this.closeDetails();
+  }
 
 
-// ----delete-data------
-  deleteSelectedProduct(id:string){
+  // ----delete-data------
+  deleteSelectedProduct(id: string) {
     debugger
     this.httpclient.delete(`${environment.apiProduct}/product/delete?id=${id}`)
-    .subscribe((res:any)=>{
-      if(res.isSuccess){
-        alert('data successfully delete')
-        this.getProduct();
+      .subscribe((res: any) => {
+        if (res.isSuccess) {
+          alert('data successfully delete')
+          this.getProduct();
 
-      // this.getByProductId(id);
-      console.log(res);
-      }else{
-        alert(res.message)
-      }
-    });
-this.closeDetails();
+          // this.getByProductId(id);
+          console.log(res);
+        } else {
+          alert(res.message)
+        }
+      });
+    this.closeDetails();
 
   }
 }
