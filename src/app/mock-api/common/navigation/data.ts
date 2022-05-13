@@ -93,12 +93,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
                         type : 'basic',
                         link : '/apps/ecommerce/student'
                     },
-                        {
+                    {
                         id   : 'apps.ecommerce.rules',
                         title: 'rules',
                         type : 'basic',
                         link : '/apps/ecommerce/rules'
-                    }
+                    },
+                   
                     // {
                     //     id   : 'apps.ecommerce.scrumboard',
                     //     title: 'scrumboard',
