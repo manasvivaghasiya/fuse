@@ -99,6 +99,12 @@ export const defaultNavigation: FuseNavigationItem[] = [
                         type : 'basic',
                         link : '/apps/ecommerce/rules'
                     },
+                    {
+                        id   : 'apps.ecommerce.exchange-rates-chart',
+                        title: 'exchange-rates-chart',
+                        type : 'basic',
+                        link : '/apps/ecommerce/exchange-rates-chart'
+                    },
                    
                     // {
                     //     id   : 'apps.ecommerce.scrumboard',

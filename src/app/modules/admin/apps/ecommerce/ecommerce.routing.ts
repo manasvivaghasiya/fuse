@@ -5,6 +5,7 @@ import { InventoryBrandsResolver, InventoryCategoriesResolver, InventoryProducts
 import { StudentdataComponent } from './student/studentdata/studentdata.component';
 import { StudentformComponent } from './student/studentform.component';
 import { RulesComponent } from './rules/rules.component';
+import { ExchangeRatesChartComponent } from './exchange-rates-chart/exchange-rates-chart.component';
 // import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 
 export const ecommerceRoutes: Route[] = [
@@ -86,6 +87,29 @@ export const ecommerceRoutes: Route[] = [
             {
                 path     : '',
                 component: RulesComponent,
+                // resolve  : {
+                //     brands    : InventoryBrandsResolver,
+                //     categories: InventoryCategoriesResolver,
+                //     products  : InventoryProductsResolver,
+                //     tags      : InventoryTagsResolver,
+                //     vendors   : InventoryVendorsResolver
+                // }
+            },
+            
+        ]
+    },
+    {
+        path      : '',
+        pathMatch : 'full',
+        redirectTo: 'exchange-rates-chart'
+    },
+    {
+        path     : 'exchange-rates-chart',
+        component: ExchangeRatesChartComponent,
+        children : [
+            {
+                path     : '',
+                component: ExchangeRatesChartComponent,
                 // resolve  : {
                 //     brands    : InventoryBrandsResolver,
                 //     categories: InventoryCategoriesResolver,

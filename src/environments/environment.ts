@@ -4,7 +4,9 @@
 
 export const environment = {
     production: false,
-    apiProduct:'https://student-api.mycodelibraries.com/api'
+    apiProduct:'https://student-api.mycodelibraries.com/api',
+    apiCountry:'https://api.frankfurter.app'
+
 
 };
 

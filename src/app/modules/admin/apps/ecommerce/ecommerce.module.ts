@@ -24,8 +24,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RulesComponent } from './rules/rules.component';
 import { MatTableModule } from '@angular/material/table';
-// import { ScrumboardComponent } from './scrumboard/scrumboard.component';
+import { ExchangeRatesChartComponent } from './exchange-rates-chart/exchange-rates-chart.component';
+import { HighchartsChartModule } from 'highcharts-angular';
+
+// import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 // import { AddcartComponent } from './scrumboard/addcart/addcart.component';
+
 
 
 @NgModule({
@@ -35,6 +39,7 @@ import { MatTableModule } from '@angular/material/table';
         StudentdataComponent,
         StudentformComponent,
         RulesComponent,
+        ExchangeRatesChartComponent,
         // ScrumboardComponent,
         // AddcartComponent
     ],
@@ -59,6 +64,7 @@ import { MatTableModule } from '@angular/material/table';
         MatTableModule,
         ReactiveFormsModule,
         MatExpansionModule,
+        HighchartsChartModule
     ]
 })
 export class ECommerceModule
