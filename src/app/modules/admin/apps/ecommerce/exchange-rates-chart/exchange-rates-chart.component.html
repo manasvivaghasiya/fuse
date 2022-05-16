@@ -8,19 +8,25 @@
         <div class="col-6 ">
             <h2 class="sub-title">Rates</h2>
                 <hr>
-            <p>  {{unitPrice | currency: "USD": "$" }}</p>
+            <!-- <p>  {{unitPrice | currency: "USD": "$" }}</p> -->
+          
+            <p>{{number1}} <span>{{value1}}</span></p>
+            <h1><span>{{value2}}</span></h1>
+            <br>
+
+            <!-- <h4>{{value}}</h4> -->
             <form  [formGroup]="form">
                 <!-- -------first------ -->
                 <div class="row">
                     <div class="col-6">
-                        <select formControlName="numOne" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <select formControlName="numOne" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  >
                             <option *ngFor="let item of number">
                                 {{ item.value }}
                             </option>
                         </select>
                     </div>
                     <div class="col-6">
-                        <select formControlName="one" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <select formControlName="one" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sel (change)="changed1(sel.value)">
                             <option *ngFor="let itemOne of mapped">
                                 {{ itemOne.value }}
                             </option>
@@ -40,7 +46,7 @@
                         </select>
                     </div>
                 <div class="col-6">
-                    <select formControlName="Two" type="" usd-only  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select formControlName="Two" type="" usd-only  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sel (change)="changed(sel.value)">
                         <option *ngFor="let itemOne of mapped">
                             {{ itemOne.value }}
                         </option>

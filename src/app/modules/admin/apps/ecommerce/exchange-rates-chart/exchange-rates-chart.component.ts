@@ -20,6 +20,11 @@ export class ExchangeRatesChartComponent implements OnInit {
 
 
   unitPrice = 600;
+  value: any;
+  value1: any;
+  value2: any;
+  number1:any;
+  number2:any;
 
   constructor(private fb:FormBuilder,
               private http:HttpClient) { }
@@ -35,6 +40,21 @@ export class ExchangeRatesChartComponent implements OnInit {
     this.getCurrancyOne();
     // this.getCountryTwo();
   }
+  
+  changed1(value) {
+    this.value1 = value;
+  }
+  changed(value) {
+    this.value2 = value;
+  }
+  // chnagedNumber1(value) {
+  //   this.number1 = value;
+  // }
+  // chnagedNumber2(value) {
+  //   this.number2 = value;
+  // }
+
+
 
 getCountryOne(){
   debugger
