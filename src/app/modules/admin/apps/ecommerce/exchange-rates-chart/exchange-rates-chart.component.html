@@ -10,24 +10,39 @@
                 <hr>
             <!-- <p>  {{unitPrice | currency: "USD": "$" }}</p> -->
           
-            <p>{{number1}} <span>{{value1}}</span></p>
-            <h1><span>{{value2}}</span></h1>
+            <!-- <p>{{number1}} </p> -->
+            <p>{{value1}}</p>
+            <!-- <h1>{{number2}}</h1> -->
+            <h1>{{value2}}</h1>
             <br>
 
             <!-- <h4>{{value}}</h4> -->
             <form  [formGroup]="form">
                 <!-- -------first------ -->
                 <div class="row">
+                    <!-- --currency-- -->
                     <div class="col-6">
-                        <select formControlName="numOne" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  >
+                        <div>
+                            <!-- <input [(ngModel)]="currency" type="text" class="form-control" /> -->
+                            <input formControlName="numOne" value="val"  name="numOne" type="text" class="form-control" />
+
+                        </div>
+
+                        <!-- <div class="currency" formControlName="numOne">
+                            <div *ngFor="let item of number">
+                                {{ item.value }}
+                            </div>
+                        </div> -->
+                        <!-- <select formControlName="numOne" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"  >
                             <option *ngFor="let item of number">
                                 {{ item.value }}
                             </option>
-                        </select>
+                        </select> -->
                     </div>
+                    <!-- --country-- -->
                     <div class="col-6">
-                        <select formControlName="one" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sel (change)="changed1(sel.value)">
-                            <option *ngFor="let itemOne of mapped">
+                        <select formControlName="one" name="one" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sel (change)="changed1(sel)">
+                            <option *ngFor="let itemOne of mapped" [ngValue]="itemOne.type">
                                 {{ itemOne.value }}
                             </option>
                         </select>
@@ -36,19 +51,31 @@
                 </div>
                 <!-- -------Two------ -->
                 <div class="row">
+                    <!-- --currency-- -->
                     <div class="col-6">
+                        <div >
+                            <!-- <input [(ngModel)]="currency" type="text" class="form-control" /> -->
+                            <input formControlName="numTwo"  name="numTwo" type="text" class="form-control" />
+
+                        </div>
+                        <!-- <div class="currency" formControlName="numTwo">
+                            <div *ngFor="let item of number">
+                                {{ item.value }}
+                            </div>
+                        </div> -->
                         <!-- <input class="form-control" type="text" placeholder="" aria-label="default input example"> -->
                       
-                        <select formControlName="numOne" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <!-- <select formControlName="numTwo" type="" usd-only class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" >
                             <option *ngFor="let item of number">
                                 {{ item.value }}
                             </option>
-                        </select>
+                        </select> -->
                     </div>
+                    <!-- --country-- -->
                 <div class="col-6">
-                    <select formControlName="Two" type="" usd-only  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sel (change)="changed(sel.value)">
-                        <option *ngFor="let itemOne of mapped">
-                            {{ itemOne.value }}
+                    <select formControlName="Two" name="Two" type="" usd-only  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" #sels (change)="changed2(sels)">
+                        <option *ngFor="let itemTwo of mappedTwo" [ngValue]="itemTwo.type">
+                            {{ itemTwo.value }}
                         </option>
                     </select>
                 </div>
@@ -62,3 +89,5 @@
         </div>
     </div>
 </div>
+
+
