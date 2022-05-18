@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -26,6 +26,10 @@ import { RulesComponent } from './rules/rules.component';
 import { MatTableModule } from '@angular/material/table';
 import { ExchangeRatesChartComponent } from './exchange-rates-chart/exchange-rates-chart.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { StrategiesComponent } from './strategies/strategies.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 // import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 // import { AddcartComponent } from './scrumboard/addcart/addcart.component';
@@ -40,6 +44,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
         StudentformComponent,
         RulesComponent,
         ExchangeRatesChartComponent,
+        StrategiesComponent,
         // ScrumboardComponent,
         // AddcartComponent
     ],
@@ -64,7 +69,11 @@ import { HighchartsChartModule } from 'highcharts-angular';
         MatTableModule,
         ReactiveFormsModule,
         MatExpansionModule,
-        HighchartsChartModule
+        HighchartsChartModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+         MatMomentDateModule,
     ]
 })
 export class ECommerceModule

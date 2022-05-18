@@ -1,0 +1,86 @@
+<div class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent">
+    <div class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+
+    <mat-card>Simple card</mat-card>
+    <br>
+    <input matInput [matDatepicker]="picker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <h1>Rules</h1>
+        <hr>
+        <div class="col-4">
+            <div class="firstCheck">
+                <!-- <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Default checkbox
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Checked checkbox
+                    </label>
+                  </div> -->
+                <div  *ngFor="let option of options">
+                <!-- <section class="example-section" [formGroup]="toppings">
+                        <p><mat-checkbox formControlName="MinCostOfPrinting">Min Cost Of Printing</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="MinShippingTime" >Min Shipping Time</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="VendorPerformance">Vendor Performance</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="IFCVendor">IFC Vendor</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="VendorCapacity">Vendor Capacity</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="Ranking">Ranking</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="RiskFactor">Risk Factor</mat-checkbox></p>
+                        <p><mat-checkbox formControlName="DeactivationDate">Deactivation date</mat-checkbox></p>
+                    </section> -->
+                    <p><mat-checkbox [checked]="options.selected"  (change)="movedata($event)" >{{option.name}}</mat-checkbox></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div>
+                <button  class="btn mt-2" (click)="rightData()"><i class="bi bi-chevron-bar-right"></i></button>
+                <br>
+                <button class="btn mt-2" (click)="right()"><i class="bi bi-chevron-compact-right"></i></button>
+                <br>
+                <button  class="  btn mt-2" (click)="left()"><i class="bi bi-chevron-compact-left"></i></button>
+                <br>
+                <button  class="btn mt-2" (click)="leftData()"><i class="bi bi-chevron-bar-left"></i></button>
+               
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="firstCheck">
+
+                        <!-- <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                            Default checkbox
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                            <label class="form-check-label" for="flexCheckChecked">
+                            Checked checkbox
+                            </label>
+                        </div>
+                    </div> -->
+                <div  *ngFor="let check of rightArray">
+                    <p><mat-checkbox >{{check.name}}</mat-checkbox></p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>

@@ -6,6 +6,7 @@ import { StudentdataComponent } from './student/studentdata/studentdata.componen
 import { StudentformComponent } from './student/studentform.component';
 import { RulesComponent } from './rules/rules.component';
 import { ExchangeRatesChartComponent } from './exchange-rates-chart/exchange-rates-chart.component';
+import { StrategiesComponent } from './strategies/strategies.component';
 // import { ScrumboardComponent } from './scrumboard/scrumboard.component';
 
 export const ecommerceRoutes: Route[] = [
@@ -110,6 +111,29 @@ export const ecommerceRoutes: Route[] = [
             {
                 path     : '',
                 component: ExchangeRatesChartComponent,
+                // resolve  : {
+                //     brands    : InventoryBrandsResolver,
+                //     categories: InventoryCategoriesResolver,
+                //     products  : InventoryProductsResolver,
+                //     tags      : InventoryTagsResolver,
+                //     vendors   : InventoryVendorsResolver
+                // }
+            },
+            
+        ]
+    },
+    {
+        path      : '',
+        pathMatch : 'full',
+        redirectTo: 'strategies'
+    },
+    {
+        path     : 'strategies',
+        component: StrategiesComponent,
+        children : [
+            {
+                path     : '',
+                component: StrategiesComponent,
                 // resolve  : {
                 //     brands    : InventoryBrandsResolver,
                 //     categories: InventoryCategoriesResolver,
