@@ -31,7 +31,7 @@
                       Checked checkbox
                     </label>
                   </div> -->
-                <div  *ngFor="let option of options">
+                <div  *ngFor="let option of leftCheckArray">
                 <!-- <section class="example-section" [formGroup]="toppings">
                         <p><mat-checkbox formControlName="MinCostOfPrinting">Min Cost Of Printing</mat-checkbox></p>
                         <p><mat-checkbox formControlName="MinShippingTime" >Min Shipping Time</mat-checkbox></p>
@@ -42,20 +42,20 @@
                         <p><mat-checkbox formControlName="RiskFactor">Risk Factor</mat-checkbox></p>
                         <p><mat-checkbox formControlName="DeactivationDate">Deactivation date</mat-checkbox></p>
                     </section> -->
-                    <p><mat-checkbox [checked]="options.selected"  (change)="movedata($event)" >{{option.name}}</mat-checkbox></p>
+                    <p><mat-checkbox [checked]="options.selected" [name]="option.id"  (change)="movedataLeft($event)" >{{option.name}}</mat-checkbox></p>
 
                 </div>
             </div>
         </div>
         <div class="col-4">
             <div>
-                <button  class="btn mt-2" (click)="rightData()"><i class="bi bi-chevron-bar-right"></i></button>
+                <button  class="btn mt-2" (click)="rightSidePush()"><i class="bi bi-chevron-bar-right"></i></button>
                 <br>
                 <button class="btn mt-2" (click)="right()"><i class="bi bi-chevron-compact-right"></i></button>
                 <br>
                 <button  class="  btn mt-2" (click)="left()"><i class="bi bi-chevron-compact-left"></i></button>
                 <br>
-                <button  class="btn mt-2" (click)="leftData()"><i class="bi bi-chevron-bar-left"></i></button>
+                <button  class="btn mt-2" (click)="leftSidePush()"><i class="bi bi-chevron-bar-left"></i></button>
                
             </div>
         </div>
@@ -75,8 +75,8 @@
                             </label>
                         </div>
                     </div> -->
-                <div  *ngFor="let check of rightArray">
-                    <p><mat-checkbox >{{check.name}}</mat-checkbox></p>
+                <div  *ngFor="let option of rightCheckArray">
+                    <p><mat-checkbox [checked]="options.selected" [name]="option.id"  (change)="movedataRight($event)" >{{option.name}}</mat-checkbox></p>
 
                 </div>
             </div>
